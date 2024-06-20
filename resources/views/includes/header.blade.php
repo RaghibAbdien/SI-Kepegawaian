@@ -26,7 +26,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
                     <li>
-                        <form action="" method="post">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
                             <button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                         </form>
                     </li>

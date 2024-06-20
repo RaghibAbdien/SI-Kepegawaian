@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
             $table->text('alamat');
             $table->string('nohp')->unique();

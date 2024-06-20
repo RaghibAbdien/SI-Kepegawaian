@@ -114,10 +114,31 @@
                                     <div class="form-group has-icon-left">
                                         <label for="nama">Nama</label>
                                         <div class="position-relative">
-                                            <input type="text" class="form-control"
-                                                placeholder="Input with icon left" id="nama" name="nama" required>
+                                            <input type="text" class="form-control" id="nama" name="nama" required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="email">Email</label>
+                                        <div class="position-relative">
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-envelope"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="password">Password</label>
+                                        <div class="position-relative">
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-lock"></i>
                                             </div>
                                         </div>
                                     </div>

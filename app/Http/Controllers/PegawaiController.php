@@ -23,6 +23,8 @@ class PegawaiController extends Controller
             $request->validate([
                 'nip' => 'required|string|unique:pegawai|regex:/^\d+$/',
                 'nama' => 'required|string|max:50|regex:/^[a-zA-Z\s]+$/',
+                'email' => 'required|email|unique:pegawai',
+                'password' => 'required',
                 'jenis_kelamin' => 'required',
                 'alamat' => 'required|string',
                 'nohp' => 'required|string|min:12|max:13|unique:pegawai|regex:/^\d+$/',
@@ -41,6 +43,8 @@ class PegawaiController extends Controller
             Pegawai::create([
                 'nip' => $request->input('nip'),
                 'nama' => $request->input('nama'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')),
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
                 'alamat' => $request->input('alamat'),
                 'nohp' => $request->input('nohp'),

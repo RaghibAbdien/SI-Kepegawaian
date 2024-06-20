@@ -10,7 +10,7 @@
 
     <main>
         <section>
-            <form action="" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="form">
                     <div class="head">
@@ -38,6 +38,17 @@
     
     <script src="assets/js/login.js"></script>
     <script src="https://kit.fontawesome.com/91441035a6.js" crossorigin="anonymous"></script>
+
+    @if (session('error'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '{{ session('error') }}'
+            });
+        </script>
+    @endif
 
 </body>
 </html>

@@ -28,13 +28,17 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li
-                class="sidebar-item {{ request()->routeIs('pegawai') ? 'active' : '' }}">
-                <a href="{{ route('pegawai') }}" class='sidebar-link'>
-                    <i class="fa-solid fa-users"></i>
-                    <span>Pegawai</span>
-                </a>
-            </li>
+            @if (Auth::guard('web')->check())
+                @if(Auth::guard('web')->user()->status == true)
+                <li
+                    class="sidebar-item {{ request()->routeIs('pegawai') ? 'active' : '' }}">
+                    <a href="{{ route('pegawai') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-users"></i>
+                        <span>Pegawai</span>
+                    </a>
+                </li>
+                @endif
+            @endif
             
         </ul>
     </div>
