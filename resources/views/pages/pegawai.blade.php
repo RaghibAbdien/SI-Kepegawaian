@@ -284,9 +284,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    {{-- <script>
+    <script>
         $(document).ready(function() {
-            $('#pegawaiForm)').on('submit', function(event) {
+            $('#pegawaiForm').on('submit', function(event) {
                 event.preventDefault();
                 var form = $(this);
         
@@ -331,12 +331,12 @@
                         });
         
                         // Mengaktifkan kembali tombol submit 
-                        form.find('button[type="submit"]').prop('disabled', false);
+                        form.find('button[type="submit"]').prop('disabled', false).text('Submit');
                     }
                 });
             });
         });
-    </script> --}}
+    </script>
 
     <script>
         $(document).ready(function() {
