@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
+Route::get('/', [AuthController::class, 'show'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 Route::get('/pegawai', [PegawaiController::class, 'show'])->name('pegawai');
 Route::post('/pegawai', [PegawaiController::class, 'store'])->name('tambah-pegawai');
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapusPegawai'])->name('hapus-pegawai');
