@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Pegawai</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $jmlhPegawai }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,13 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Absensi</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="font-extrabold mb-0">
+                                            @if (Auth::guard('web')->check())
+                                                {{ $jmlhAbsensi }}
+                                            @elseif (Auth::guard('pegawai')->check())
+                                                {{ $jmlhAbsensiUser }}    
+                                            @endif
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -82,6 +88,43 @@
     @push('js')
         <!-- Need: Apexcharts -->
     <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
+    <script>
+        var optionsProfileVisit = {
+            annotations: {
+                position: 'back'
+            },
+            dataLabels: {
+                enabled:false
+            },
+            chart: {
+                type: 'bar',
+                height: 300
+            },
+            fill: {
+                opacity:1
+            },
+            plotOptions: {
+            },
+            series: [{
+                name: 'Jumlah Pegawai',
+                data: {!! json_encode($jumlahPegawaiPerBulan) !!}
+            }],
+            colors: '#435ebe',
+            xaxis: {
+                categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
+            },
+            yaxis: {
+                labels: {
+                    formatter: function (val) { 
+                        return parseInt(val)
+                    }
+                }
+            }
+        }
+
+        var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
+
+        chartProfileVisit.render();
+    </script>
     @endpush
 @endsection
