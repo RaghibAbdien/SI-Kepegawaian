@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PegawaiController;
@@ -26,4 +27,7 @@ Route::group(['middleware' => 'auth:web,pegawai'], function(){
     Route::post('/pegawai', [PegawaiController::class, 'store'])->name('tambah-pegawai');
     Route::put('/pegawai/{id}', [PegawaiController::class, 'editPegawai'])->name('edit-pegawai');
     Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapusPegawai'])->name('hapus-pegawai');
+    Route::get('/absensi', [AbsensiController::class, 'show'])->name('absensi');
+    Route::post('/absensi', [AbsensiController::class, 'store'])->name('tambah-absensi');
+    Route::delete('/absensi/{id}', [AbsensiController::class, 'delete'])->name('hapus-absen');
 });

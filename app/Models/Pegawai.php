@@ -11,5 +11,11 @@ class Pegawai extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'pegawai';
+
     protected $guarded = ['id'];
+
+    public function absensis()
+    {
+        return $this->hasMany(Absensi::class, 'id_pegawai');
+    }
 }

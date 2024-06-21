@@ -39,6 +39,13 @@
                 </li>
                 @endif
             @endif
+            <li
+                class="sidebar-item {{ request()->routeIs('absensi') ? 'active' : '' }}">
+                <a href="{{ route('absensi') }}" class='sidebar-link'>
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span>Absensi</span>
+                </a>
+            </li>
             
         </ul>
     </div>
