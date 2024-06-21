@@ -9,6 +9,21 @@
 
         <!-- Responsive datatable examples -->
         <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css">
+
+        <style>
+            .detail-container {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .list-group-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .list-group-item span {
+                font-weight: bold;
+            }
+        </style>
     @endpush
 
     <div class="page-heading">
@@ -418,11 +433,30 @@
                                     <h5 class="card-title">{{ $pegawai->nama }}</h5>
                                 </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
+                            <div class="container detail-container">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>Email</strong>
+                                        <span>{{ $pegawai->email }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Jenis Kelamin</strong>
+                                        <span>{{ $pegawai->jenis_kelamin }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>No. HP</strong>
+                                        <span>{{ $pegawai->nohp }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Agama</strong>
+                                        <span>{{ $pegawai->agama }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Pendidikan</strong>
+                                        <span>{{ $pegawai->pendidikan }}</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
