@@ -23,11 +23,19 @@ class AuthController extends Controller
 
         try {
             if (Auth::guard('pegawai')->attempt($infoLogin)) {
-                $request->session()->regenerate();
-                return to_route('dashboard');
+                if (Auth::guard('pegawai')->user()->status == true){
+                    $request->session()->regenerate();
+                    return to_route('dashboard');
+                } else{
+                    return redirect('/')->with('error', 'Akun anda sudah tidak aktif');
+                }
             } elseif ((Auth::guard('web')->attempt($infoLogin))) {
-                $request->session()->regenerate();
-                return to_route('dashboard');
+                if (Auth::guard('web')->user()->status == true){
+                    $request->session()->regenerate();
+                    return to_route('dashboard');
+                } else{
+                    return redirect('/')->with('error', 'Akun anda sudah tidak aktif');
+                }
             } else{
                 return redirect('/')->with('error', 'Password atau Email anda salah. Silahkan coba lagi');
             }
