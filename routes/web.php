@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [AuthController::class, 'show']);
-Route::post('/', [AuthController::class, 'login'])->name('login');
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('/', [AuthController::class, 'show']);
+    Route::post('/', [AuthController::class, 'login'])->name('login');
+});
 
 Route::group(['middleware' => 'auth:web,pegawai'], function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
