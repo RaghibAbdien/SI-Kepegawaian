@@ -21,25 +21,25 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'nama' => 'Admin 1',
+            'name' => 'Admin 1',
             'email' => 'admin1@test.com',
             'password' => bcrypt('admin123'),
         ]);
 
         User::create([
-            'nama' => 'Admin 2',
+            'name' => 'Admin 2',
             'email' => 'admin2@test.com',
             'password' => bcrypt('admin123'),
         ]);
 
         User::create([
-            'nama' => 'Admin 3',
+            'name' => 'Admin 3',
             'email' => 'admin3@test.com',
             'password' => bcrypt('admin123'),
         ]);
 
         User::create([
-            'nama' => 'Admin 4',
+            'name' => 'Admin 4',
             'email' => 'admin4@test.com',
             'password' => bcrypt('admin123'),
         ]);
