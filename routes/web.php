@@ -24,5 +24,6 @@ Route::group(['middleware' => 'auth:web,pegawai'], function(){
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
     Route::get('/pegawai', [PegawaiController::class, 'show'])->name('pegawai');
     Route::post('/pegawai', [PegawaiController::class, 'store'])->name('tambah-pegawai');
+    Route::put('/pegawai/{id}', [PegawaiController::class, 'editPegawai'])->name('edit-pegawai');
     Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapusPegawai'])->name('hapus-pegawai');
 });

@@ -72,7 +72,7 @@
                                 <td>
                                     <div>
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailPegawai{{ $pegawai->id }}"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editPegawai{{ $pegawai->id }}"><i class="bi bi-pencil-square"></i></button>
                                         <button id="hapus-pegawai" data-id="{{ $pegawai->id }}" class="btn btn-danger"><i class="bi bi-x-square"></i></button>
                                     </div>
                                 </td>
@@ -235,6 +235,171 @@
     </div>
 
 
+    <!-- Modal Edit Pegawai -->
+    @foreach ($pegawais as $pegawai)
+    <div class="modal fade text-left" id="editPegawai{{ $pegawai->id }}" tabindex="-1" role="dialog" aria-labelledby="formPegawai" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <form action="{{ route('edit-pegawai', $pegawai->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel4">Edit Pegawai</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i data-feather="x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="nip{{$pegawai->id}}">NIP</label>
+                                        <div class="position-relative">
+                                            <input type="number" class="form-control" id="nip{{$pegawai->id}}" name="nip" value="{{ $pegawai->nip }}" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-card-text"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="nama{{$pegawai->id}}">Nama</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" id="nama{{$pegawai->id}}" name="nama" value="{{ $pegawai->nama }}" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="email{{$pegawai->id}}">Email</label>
+                                        <div class="position-relative">
+                                            <input type="email" class="form-control" id="email{{$pegawai->id}}" name="email" value="{{ $pegawai->email }}" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-envelope"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="password{{$pegawai->id}}">Password</label>
+                                        <div class="position-relative">
+                                            <input type="password" class="form-control" id="password{{$pegawai->id}}" name="password">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-lock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Jenis Kelamin</label>
+                                        <div class="d-flex justify-content-around mt-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki_laki{{$pegawai->id}}" value="Laki-Laki" {{ $pegawai->jenis_kelamin == 'Laki-Laki' ? 'checked' : '' }} required>
+                                                <label class="form-check-label" for="laki_laki">
+                                                    Laki-laki
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan{{$pegawai->id}}" value="Perempuan" {{ $pegawai->jenis_kelamin == 'Perempuan' ? 'checked' : '' }} required>
+                                                <label class="form-check-label" for="perempuan">
+                                                    Perempuan
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="alamat{{$pegawai->id}}">Alamat</label>
+                                        <div class="position-relative">
+                                            <textarea class="form-control" id="alamat{{$pegawai->id}}" name="alamat" rows="3" required>{{ $pegawai->alamat }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="nohp{{$pegawai->id}}">No. HP</label>
+                                        <div class="position-relative">
+                                            <input type="number" class="form-control" id="nohp{{$pegawai->id}}" name="nohp" value="{{ $pegawai->nohp }}" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-phone"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="foto{{$pegawai->id}}">Foto</label>
+                                        <div class="position-relative">
+                                            <input type="file" class="form-control" id="foto{{$pegawai->id}}" name="foto" accept=".jpg, .png, .jpeg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="position-relative">
+                                            <select class="form-select" name="status" id="status{{$pegawai->id}}">
+                                                <option value="1" {{ $pegawai->status == 1 ? 'selected' : '' }}>Aktif</option>
+                                                <option value="0" {{ $pegawai->status == 0 ? 'selected' : '' }}>Tidak Aktif</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Agama</label>
+                                        <div class="position-relative">
+                                            <select class="form-select" name="agama">
+                                                <option value="Islam" {{ $pegawai->agama == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                                <option value="Kristen" {{ $pegawai->agama == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                                <option value="Protestan" {{ $pegawai->agama == 'Protestan' ? 'selected' : '' }}>Protestan</option>
+                                                <option value="Katolik" {{ $pegawai->agama == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                                <option value="Hindu" {{ $pegawai->agama == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                                <option value="Buddha" {{ $pegawai->agama == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                                <option value="Konghucu" {{ $pegawai->agama == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Pendidikan</label>
+                                        <div class="position-relative">
+                                            <select class="form-select" name="pendidikan">
+                                                <option value="SMA/SMK/Sederajat" {{ $pegawai->pendidikan == 'SMA/SMK/Sederajat' ? 'selected' : '' }}>SMA/SMK/Sederajat</option>
+                                                <option value="S1" {{ $pegawai->pendidikan == 'S1' ? 'selected' : '' }}>S1</option>
+                                                <option value="S2" {{ $pegawai->pendidikan == 'S2' ? 'selected' : '' }}>S2</option>
+                                                <option value="S3" {{ $pegawai->pendidikan == 'S3' ? 'selected' : '' }}>S3</option>
+                                                <option value="D1" {{ $pegawai->pendidikan == 'D1' ? 'selected' : '' }}>D1</option>
+                                                <option value="D2" {{ $pegawai->pendidikan == 'D2' ? 'selected' : '' }}>D2</option>
+                                                <option value="D3" {{ $pegawai->pendidikan == 'D3' ? 'selected' : '' }}>D3</option>
+                                                <option value="D4" {{ $pegawai->pendidikan == 'D4' ? 'selected' : '' }}>D4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal"><i class="bx bx-x"></i><span>Close</span></button>
+                        <button type="submit" class="btn btn-primary ml-1"><i class="bx bx-check"></i><span>Submit</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+
     <!-- Modal Detail Pegawai -->
     @foreach ($pegawais as $pegawai)
     <div class="modal fade text-left" id="detailPegawai{{ $pegawai->id }}" tabindex="-1" role="dialog" aria-labelledby="formPegawai" aria-hidden="true" data-bs-keyboard="false">
@@ -286,7 +451,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#pegawaiForm').on('submit', function(event) {
+            $('form').on('submit', function(event) {
                 event.preventDefault();
                 var form = $(this);
         
