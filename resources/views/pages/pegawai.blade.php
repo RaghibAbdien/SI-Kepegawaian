@@ -66,8 +66,16 @@
                         @foreach ($pegawais as $pegawai)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $pegawai->nip }}</td>
-                                <td>{{ $pegawai->nama }}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <span class="mx-auto"> {{ $pegawai->nip }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <span class="mx-auto">{{ $pegawai->nama }}</span>
+                                    </div>
+                                </td>
                                 <td>{{ $pegawai->alamat }}</td>
                                 <td>
                                     <span class="

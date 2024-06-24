@@ -48,6 +48,7 @@
                             <th>No.</th>
                             <th>Nama</th>
                             <th>Waktu Kehadiran</th>
+                            <th>Waktu Pulang</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -59,8 +60,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->pegawai->nama }}</td>
                                     <td>{{ $item->waktu_kehadiran }}</td>
+                                    <td>{{ $item->waktu_pulang }}</td>
                                     <td>
-                                        <button id="hapus-absen" data-id="{{ $item->id }}" class="btn btn-danger">Hapus</button>
+                                        <div class="d-flex gap-2">
+                                            <button id="hapus-absen" data-id="{{ $item->id }}" class="btn btn-danger">Hapus</button>
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailAbsensi{{$item->id}}"><i class="bi bi-eye-fill"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,8 +77,12 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $absensi->pegawai->nama }}</td>
                                         <td>{{ $absensi->waktu_kehadiran }}</td>
+                                        <td>{{ $absensi->waktu_pulang }}</td>
                                         <td>
-                                            <button id="hapus-absen" data-id="{{ $absensi->id }}" class="btn btn-danger">Hapus</button>
+                                            <div class="d-flex gap-2">
+                                                <button id="hapus-absen" data-id="{{ $absensi->id }}" class="btn btn-danger">Hapus</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailAbsensi{{$absensi->id}}"><i class="bi bi-eye-fill"></i></button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -121,6 +130,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="nama">Waktu Pulang</label>
+                                        <div class="position-relative">
+                                            <input type="datetime-local" class="form-control" id="waktu" name="waktu_pulang" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-clock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="nama">Keterangan</label>
+                                        <div class="position-relative">
+                                            <select class="form-control" name="keterangan" id="">
+                                                <option value="Izin">Izin</option>
+                                                <option value="Sakit">Sakit</option>
+                                                <option value="Cuti">Cuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,6 +164,43 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Detail Pegawai -->
+    @foreach ($absensis as $absensi)
+    <div class="modal fade text-left" id="detailAbsensi{{ $absensi->id }}" tabindex="-1" role="dialog" aria-labelledby="formPegawai" aria-hidden="true" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel4">Detail Absensi</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i data-feather="x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="container detail-container">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>Waktu Kehadiran</strong>
+                                        <span>{{ $absensi->waktu_kehadiran }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Waktu Pulang</strong>
+                                        <span>{{ $absensi->waktu_pulang }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Keterangan</strong>
+                                        <span>{{ $absensi->keterangan }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal"><i class="bx bx-x"></i><span>Close</span></button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
     @push('js')
         <!-- Required datatable js -->

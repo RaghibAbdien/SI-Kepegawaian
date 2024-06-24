@@ -21,11 +21,15 @@ class AbsensiController extends Controller
             $request->validate([
                 'id_pegawai' => 'required|exists:pegawai,id',
                 'waktu_kehadiran' => 'required|date',
+                'waktu_pulang' => 'required|date',
+                'keterangan' => 'required',
             ]);
 
             Absensi::create([
                 'id_pegawai' => $request->input('id_pegawai'),
                 'waktu_kehadiran' => $request->input('waktu_kehadiran'),
+                'waktu_pulang' => $request->input('waktu_pulang'),
+                'keterangan' => $request->input('keterangan'),
             ]);
 
             return redirect()->route('absensi')->with('success', 'Absensi berhasil ditambahkan');

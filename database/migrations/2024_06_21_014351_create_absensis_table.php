@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pegawai');
             $table->timestamp('waktu_kehadiran');
+            $table->timestamp('waktu_pulang')->nullable();
+            $table->enum('keterangan', ['Izin', 'Sakit', 'Cuti']);
             $table->timestamps();
 
             $table->foreign('id_pegawai')->references('id')->on('pegawai')->onDelete('cascade');
